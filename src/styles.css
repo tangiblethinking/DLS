@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --color-ink: #1c1916;
+  --color-paper: #f3efe6;
+  --color-paper-2: #e7e1d6;
+  --color-line: #ddd4c6;
+  --color-mute: #6e655c;
+  --color-accent: #9c3b1e;
+  --color-accent-ink: #fff7f2;
+}
+
+/* Token flip. Utilities read these variables, so one class set serves both themes. */
+.dark {
+  --color-ink: #f3efe6;
+  --color-paper: #141210;
+  --color-paper-2: #1e1b18;
+  --color-line: #3a342c;
+  --color-mute: #b3a89c;
+  --color-accent: #e39a72;
+  --color-accent-ink: #1a100c;
+}
+
+/* Local theme frames for the dark-mode specimen. They beat the document token. */
+.dls-force-light {
+  --color-ink: #1c1916;
+  --color-paper: #f3efe6;
+  --color-paper-2: #e7e1d6;
+  --color-line: #ddd4c6;
+  --color-mute: #6e655c;
+  --color-accent: #9c3b1e;
+  --color-accent-ink: #fff7f2;
+  color-scheme: light;
+}
+.dls-force-dark {
+  --color-ink: #f3efe6;
+  --color-paper: #141210;
+  --color-paper-2: #1e1b18;
+  --color-line: #3a342c;
+  --color-mute: #b3a89c;
+  --color-accent: #e39a72;
+  --color-accent-ink: #1a100c;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-height: 100vh;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
